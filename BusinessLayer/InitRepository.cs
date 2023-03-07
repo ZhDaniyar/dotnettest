@@ -1,12 +1,12 @@
-﻿using WebApplication2.Models;
-using Microsoft.EntityFrameworkCore;
-namespace WebApplication2.DbContexts
+﻿using DataAccessLayer.Models;
+
+namespace DataAccessLayer
 {
-    public class UserRepository : IUserRepository
+    public static class UserOrderDbHelper
     {
-        public UserRepository()
+        public static void InitRepository()
         {
-            using (var context = new ApiContext())
+            using (var context = new UserOrderContext())
             {
                 var users = new List<User>()
                 {
@@ -34,19 +34,11 @@ namespace WebApplication2.DbContexts
                             new Order {NameOfGood = "GTA 5", Adress = "LA" }
                         }
                     }
-                }; 
+                };
                 context.Users.AddRange(users);
                 context.SaveChanges();
             }
         }
-
-        public List<User> GetUsers()
-        {
-            using (var context = new ApiContext())
-            {
-                var list = context.Users.Include(x => x.Orders).ToList();
-                return list;
-            }
-        }
+        
     }
 }

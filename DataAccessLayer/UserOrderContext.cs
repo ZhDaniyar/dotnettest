@@ -1,8 +1,9 @@
-﻿using WebApplication2.Models;
+﻿using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
-namespace WebApplication2.DbContexts
+
+namespace DataAccessLayer
 {
-    public class ApiContext : DbContext
+    public class UserOrderContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
