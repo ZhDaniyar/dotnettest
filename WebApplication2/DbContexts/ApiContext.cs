@@ -4,8 +4,7 @@ namespace WebApplication2.DbContexts
 {
     public class ApiContext : DbContext
     {
-        protected override void OnConfiguring
-       (DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase(databaseName: "UserOrderDb");
         }
