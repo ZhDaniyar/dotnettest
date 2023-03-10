@@ -16,5 +16,11 @@ namespace BusinessLayer
         {
             return _userRepository.GetUsers();
         }
+        
+        public IEnumerable<User> GetUsersByName(string username)
+        {
+            var list = _userRepository.GetUsers();
+            return list.Where(list=> list.Name == username).ToList();
+        }
     }
 }
