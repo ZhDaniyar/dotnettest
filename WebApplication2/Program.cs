@@ -1,5 +1,6 @@
 using BusinessLayer;
-using DataAccessLayer;
+using DataAccessLayer.Implementation;
+using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -11,7 +12,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
-//builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserActions>();
 UserOrderDbHelper.InitRepository();
 //builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("UserOrderDb"));
 

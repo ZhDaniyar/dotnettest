@@ -7,6 +7,7 @@ using DataAccessLayer;
 using DataAccessLayer.Models;
 using DataAccessLayer.Repositories;
 
+
 namespace DataAccessLayer.Implementation
 {
     internal class UserActions : IUserRepository
@@ -23,7 +24,7 @@ namespace DataAccessLayer.Implementation
             using (var context = new UserOrderContext())
             {
                 var list = context.Users.ToList();
-                return list[id];
+                return (User)list.Where(list=> list.Id == id);
             }
         }
         public void AddUser(User user) { }

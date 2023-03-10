@@ -4,7 +4,7 @@ namespace DataAccessLayer.Repositories
 {
     public interface IOrderRepository
     {
-        List<Order> GetUsers();
+        List<Order> GetOrders();
         Order GetUser(int id);
         void AddUser(Order user);
         void UpdateUser(Order user);

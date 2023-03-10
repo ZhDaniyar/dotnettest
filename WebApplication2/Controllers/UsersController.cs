@@ -15,12 +15,6 @@ namespace WebApplication2.Controllers
         {
             _userService = userService;
         }
-
-        //[HttpGet]  
-        //public ActionResult<List<User>> Get() 
-        //{
-        //    return Ok(_userService.GetUsers());
-        //}
         [HttpGet]
         public ActionResult<List<User>> Get()
         {
@@ -30,6 +24,11 @@ namespace WebApplication2.Controllers
         public ActionResult<List<User>> GetUsersByName(string name)
         {
             return Ok(_userService.GetUsersByName(name));
+        }
+        [HttpGet]
+        public ActionResult<List<User>> GetUsersByAdress(string adress)
+        {
+            return Ok(_userService.GetUsersByAdress(adress));
         }
     }
 }
