@@ -7,7 +7,7 @@ namespace WebApplication2.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         
         public UsersController(IUserRepository userRepository)
         {
@@ -15,9 +15,17 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet]  
-        public ActionResult<List<User>> Get() 
+        public ActionResult<List<User>> Get(string a) 
         {
-            return Ok(_userRepository.GetUsers());
+            if (a == "")
+                return new BadRequestObjectResult("asdasd");
+            return Ok(_userRepository.GetUsers(a));
+        }
+
+        [HttpPost]
+        public ActionResult<List<User>> ChangeUsersAbove18()
+        {
+            return Ok(_userService.ChangeUsersAbove18());
         }
     }
 }
