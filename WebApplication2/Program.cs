@@ -1,8 +1,7 @@
-using DataAccessLayer;
-using Microsoft.EntityFrameworkCore;
+using BusinessLayer;
+using DataAccessLayer.Implementation;
+using DataAccessLayer.Repositories;
 using System.Text.Json.Serialization;
-using WebApplication2.DbContexts;
-using WebApplication2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +11,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-UserOrderDbHelper.InitRepository();
-builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("UserOrderDb"));
+builder.Services.AddScoped<IUserRepository, UserActions>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

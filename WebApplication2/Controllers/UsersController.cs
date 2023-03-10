@@ -1,31 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApplication2.Models;
+using BusinessLayer;
+using DataAccessLayer.Models;
+using DataAccessLayer.Repositories;
 
 namespace WebApplication2.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
         
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
-        [HttpGet]  
-        public ActionResult<List<User>> Get(string a) 
+        [HttpGet]
+        public ActionResult<List<User>> Get()
         {
-            if (a == "")
-                return new BadRequestObjectResult("asdasd");
-            return Ok(_userRepository.GetUsers(a));
+            return Ok(_userService.GetUsers());
         }
-
-        [HttpPost]
-        public ActionResult<List<User>> ChangeUsersAbove18()
+        [HttpGet]
+        public ActionResult<List<User>> GetUsersByName(string id)
         {
-            return Ok(_userService.ChangeUsersAbove18());
+            return Ok(_userService.GetUsersByName(id));
+        }
+        [HttpGet]
+        public ActionResult<List<User>> GetUsersByAdress(string adress)
+        {
+            return Ok(_userService.GetUsersByAdress(adress));
         }
     }
 }
