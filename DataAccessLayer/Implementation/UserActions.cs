@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessLayer;
-using DataAccessLayer.Models;
+﻿using DataAccessLayer.Models;
 using DataAccessLayer.Repositories;
 
 
 namespace DataAccessLayer.Implementation
 {
-    internal class UserActions : IUserRepository
+    public class UserActions : IUserRepository
     {
         public List<User> GetUsers()
         {
