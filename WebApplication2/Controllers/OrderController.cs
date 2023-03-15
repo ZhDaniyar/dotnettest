@@ -6,26 +6,28 @@ namespace WebApplication2.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IUserService userService)
+        public OrderController(IOrderService orderService)
         {
-            _userService = userService;
+            _orderService = orderService;
         }
         [HttpGet]
         public ActionResult<List<Order>> Get()
         {
-            return Ok(_userService.GetOrders());
+            return Ok(_orderService.GetOrders());
         }
+
         [HttpGet]
-        public ActionResult<List<Order>> GetOrdersById(int id)
+        public ActionResult<List<Order>> GetOrdersByUserName(string id)
         {
-            return Ok(_userService.GetOrdersById(id));
+            return Ok(_orderService.GetOrdersByUserName(id));
         }
+
         [HttpGet]
         public ActionResult<List<Order>> GetOrdersByAdress(string adress)
         {
-            return Ok(_userService.GetOrdersByAdress(adress));
+            return Ok(_orderService.GetOrdersByAdress(adress));
         }
     }
 }
