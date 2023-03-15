@@ -3,29 +3,29 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLayer
 {
-    public class UserService : IUserService
+    public class OrderService : IOrderService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IOrderRepository _OrderRepository;
         private readonly IOrderRepository _orderRepository;
 
-        public UserService(IUserRepository userRepository) 
+        public OrderService(IOrderRepository OrderRepository) 
         {
-            _userRepository = userRepository;
+            _OrderRepository = OrderRepository;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<Order> GetOrders()
         {
-            return _userRepository.GetUsers();
+            return _OrderRepository.GetOrders();
         }
         
-        public IEnumerable<User> GetUsersByName(string username)
+        public IEnumerable<Order> GetOrdersByName(string ordername)
         {
-            var list = _userRepository.GetUsers();
-            return list.Where(list=> list.Name == username).ToList();
+            var list = _OrderRepository.GetOrders();
+            return list.Where(list=> list.Name == ordername).ToList();
         }
-        public IEnumerable<User> GetUsersByAdress (string adress)
+        public IEnumerable<Order> GetOrdersByAdress (string adress)
         {
-            var list = _userRepository.GetUsers();
+            var list = _OrderRepository.GetOrders();
             return list.Where(list => list.Adress == adress).ToList();
         }
 
@@ -45,10 +45,10 @@ namespace BusinessLayer
             return list.Where(list => list.Adress == adress).ToList();
         }
 
-        public IEnumerable<Order> GetOrdersByUserName(string userName)
+        public IEnumerable<Order> GetOrdersByOrderName(string OrderName)
         {
             var list = _orderRepository.GetOrders();
-            return list.Where(list => list.User.Name == userName).ToList();
+            return list.Where(list => list.Order.Name == OrderName).ToList();
         }
     }
 }
